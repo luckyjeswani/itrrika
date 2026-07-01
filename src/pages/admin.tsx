@@ -91,6 +91,30 @@ export default function Admin() {
       setLoading(false);
     }
   };
+  const deleteOrder = async (orderId: number) => {
+  if (!confirm("Are you sure you want to delete this order?")) return;
+  try {
+    const res = await fetch(`/api/orders/${orderId}?adminKey=${encodeURIComponent(ADMIN_KEY)}`, {
+      method: "DELETE",
+    });
+    if (!res.ok) throw new Error();
+    setOrders(prev => prev.filter(o => o.id !== orderId));
+  } catch {
+    alert("Failed to delete order. Please try again.");
+  }
+};
+  const deleteOrder = async (orderId: number) => {
+  if (!confirm("Are you sure you want to delete this order?")) return;
+  try {
+    const res = await fetch(`/api/orders/${orderId}?adminKey=${encodeURIComponent(ADMIN_KEY)}`, {
+      method: "DELETE",
+    });
+    if (!res.ok) throw new Error();
+    setOrders(prev => prev.filter(o => o.id !== orderId));
+  } catch {
+    alert("Failed to delete order. Please try again.");
+  }
+};
 
   const refresh = async () => {
     setLoading(true);
@@ -339,6 +363,12 @@ export default function Admin() {
                                 <SiWhatsapp size={12} />
                                 Open Chat
                               </a>
+                              <button
+  onClick={() => deleteOrder(order.id)}
+  className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-red-400 border border-red-400/30 px-3 py-2 hover:bg-red-400/10 transition-colors"
+>
+  Delete Order
+</button>
                             </div>
                           </div>
 
