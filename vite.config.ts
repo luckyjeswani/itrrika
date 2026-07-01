@@ -11,4 +11,9 @@ export default defineConfig({
       "@assets": path.resolve(__dirname, "./public/assets"),
     },
   },
+  preview: {
+    allowedHosts: ["itrrika.onrender.com"],
+    host: "0.0.0.0",
+    port: 10000,
+  },
 });
