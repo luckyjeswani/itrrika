@@ -40,6 +40,7 @@ export default function Checkout() {
   const [orderId, setOrderId] = useState<number | null>(null);
   const [confirmedTotal, setConfirmedTotal] = useState("");
   const [error, setError] = useState("");
+  const [confirmedTotal, setConfirmedTotal] = useState("");
 
   const bundle = getBundleInfo(items.length);
   const totalStr = formatPrice(bundle.price);
