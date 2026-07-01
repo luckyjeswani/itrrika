@@ -38,10 +38,12 @@ export default function Checkout() {
   const [step, setStep] = useState<Step>("address");
   const [submitting, setSubmitting] = useState(false);
   const [orderId, setOrderId] = useState<number | null>(null);
+  const [confirmedTotal, setConfirmedTotal] = useState("");
   const [error, setError] = useState("");
 
   const bundle = getBundleInfo(items.length);
   const totalStr = formatPrice(bundle.price);
+  const [confirmedTotal, setConfirmedTotal] = useState("");
 
   const handleField = (field: keyof FormData, value: string) =>
     setForm(prev => ({ ...prev, [field]: value }));
@@ -86,6 +88,7 @@ export default function Checkout() {
       });
       if (!res.ok) throw new Error("Order failed");
       const data = await res.json();
+      setConfirmedTotal(totalStr);
       setOrderId(data.id);
       clear();
       setStep("confirmation");
@@ -264,7 +267,7 @@ export default function Checkout() {
                   )}
                   <div className="flex justify-between items-center pt-1">
                     <span className="text-muted-foreground text-sm uppercase tracking-widest">Total</span>
-                    <span className="font-serif text-2xl text-primary">{totalStr}</span>
+                    <span className="font-serif text-2xl text-primary">{confirmedTotal || totalStr}</span>
                   </div>
                 </div>
 
@@ -300,7 +303,7 @@ export default function Checkout() {
               <div className="border border-primary/20 bg-primary/5 p-8 mb-10 text-left">
                 <h3 className="font-serif text-xl text-foreground mb-4">Complete Your UPI Payment</h3>
                 <p className="text-muted-foreground text-sm mb-4">
-                  Please send <span className="text-primary font-medium">{totalStr}</span> to the UPI ID below and send the payment screenshot to our WhatsApp to confirm your order.
+                  Please send <span className="text-primary font-medium">{confirmedTotal || totalStr}</span> to the UPI ID below and send the payment screenshot to our WhatsApp to confirm your order.
                 </p>
                 <div className="border border-primary/30 px-6 py-4 text-center mb-4">
                   <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">UPI ID</p>
@@ -316,7 +319,7 @@ export default function Checkout() {
               <div className="border border-primary/20 bg-primary/5 p-6 mb-10 text-left">
                 <h3 className="font-serif text-lg text-foreground mb-2">Cash on Delivery</h3>
                 <p className="text-muted-foreground text-sm">
-                  Your order will be dispatched soon. Please keep <span className="text-primary font-medium">{totalStr}</span> ready at the time of delivery.
+                  Your order will be dispatched soon. Please keep <span className="text-primary font-medium">{confirmedTotal || totalStr}</span> ready at the time of delivery.
                 </p>
               </div>
             )}
