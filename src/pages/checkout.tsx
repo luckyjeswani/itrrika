@@ -332,8 +332,10 @@ export default function Checkout() {
               <SiWhatsapp size={16} />
               Confirm on WhatsApp
             </a>
-        )}
-      </div>
-    </div>
-  );
+         </motion.div>
+         )}
+       </div>
+     </div>
+   );
 }
+      
