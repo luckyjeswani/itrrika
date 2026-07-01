@@ -332,29 +332,6 @@ export default function Checkout() {
               <SiWhatsapp size={16} />
               Confirm on WhatsApp
             </a>
-            {!cancelled ? (
-  <div className="mt-6">
-    <button
-      onClick={handleCancel}
-      disabled={cancelling}
-      className="text-xs uppercase tracking-widest text-red-400 border border-red-400/30 px-6 py-3 hover:bg-red-400/10 transition-colors disabled:opacity-50"
-    >
-      {cancelling ? "Cancelling..." : "Cancel Order"}
-    </button>
-    <p className="text-muted-foreground text-xs mt-2">
-      Orders can only be cancelled within 3 hours of placing.
-    </p>
-    {cancelError && (
-      <p className="text-red-400 text-xs mt-2">{cancelError}</p>
-    )}
-  </div>
-) : (
-  <div className="mt-6 border border-red-400/30 bg-red-400/5 px-6 py-4">
-    <p className="text-red-400 text-sm uppercase tracking-widest">Order Cancelled</p>
-    <p className="text-muted-foreground text-xs mt-1">Your order has been cancelled. No payment is required.</p>
-  </div>
-)}
-          </motion.div>
         )}
       </div>
     </div>
