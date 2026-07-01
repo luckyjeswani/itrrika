@@ -102,7 +102,7 @@ export default function Admin() {
   } catch {
     alert("Failed to delete order. Please try again.");
   }
-};
+
   
 };
 
