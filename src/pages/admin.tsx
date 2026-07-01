@@ -103,17 +103,7 @@ export default function Admin() {
     alert("Failed to delete order. Please try again.");
   }
 };
-  const deleteOrder = async (orderId: number) => {
-  if (!confirm("Are you sure you want to delete this order?")) return;
-  try {
-    const res = await fetch(`/api/orders/${orderId}?adminKey=${encodeURIComponent(ADMIN_KEY)}`, {
-      method: "DELETE",
-    });
-    if (!res.ok) throw new Error();
-    setOrders(prev => prev.filter(o => o.id !== orderId));
-  } catch {
-    alert("Failed to delete order. Please try again.");
-  }
+  
 };
 
   const refresh = async () => {
